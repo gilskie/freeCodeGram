@@ -11,7 +11,7 @@
                 <div class="d-flex align-items-center pb-3" style="">
                     <div class="h4">{{ $user->username }}</div>
 
-                    <follow-button user-id="{{ $user->id }}"></follow-button>
+                    <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                 </div>
 
                 @can('update', $user->profile)
@@ -25,9 +25,9 @@
                 @endcan
             </div>
             <div class="d-flex">
-                <div class="" style="padding-right: 10px;"><strong>{{ $user->posts->count() }}</strong> posts</div>
-                <div class="" style="padding-right: 10px;"><strong>23k</strong> followers</div>
-                <div class="" style="padding-right: 10px;"><strong>212</strong> following</div>
+                <div class="" style="padding-right: 10px;"><strong>{{ $postCount }}</strong> posts</div>
+                <div class="" style="padding-right: 10px;"><strong>{{ $followersCount }}</strong> followers</div>
+                <div class="" style="padding-right: 10px;"><strong>{{ $followingCount }}</strong> following</div>
             </div>
             <div class="pt-4" style="font-weight: bold;">{{ $user->profile->title ?? '' }}</div>
             <div>{{ $user->profile->description ?? '' }}</div>
@@ -38,7 +38,7 @@
         @foreach($user->posts as $post)
             <div class="col-4 text-center pb-4">
                 <a href="/p/{{ $post->id }}">
-                <img src="/storage/{{ $post->image }}" alt="">
+                    <img src="/storage/{{ $post->image }}" alt="">
                 </a>
             </div>
         @endforeach
