@@ -34,6 +34,7 @@ class ProfilesController extends Controller
             'count.followers.'.$user->id, 
             now()->addSeconds(30), 
             function () use ($user) {
+                
                 return $user->profile->followers->count();
             });
 

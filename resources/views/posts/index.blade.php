@@ -2,7 +2,20 @@
 
 @section('content')
 <div class="container">
-    @foreach ($posts as $post)
+    
+    @if (count($posts) == 0)
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <h2>Nothing to display.</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <h4>Follow profiles to start seeing updates from them.</h4>
+            </div>
+        </div>
+    @else
+        @foreach ($posts as $post)
         <div class="row">
             <div class="col-7 offset-3">
                 <a href="/profile/{{ $post->user->id }}" class="href">
@@ -42,12 +55,14 @@
                 </div>
             </div>
         </div>
-    @endforeach
+        @endforeach
 
-    <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-            {{ $posts->links() }}
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                {{ $posts->links() }}
+            </div>
         </div>
-    </div>
+        
+    @endif
 </div>
 @endsection
